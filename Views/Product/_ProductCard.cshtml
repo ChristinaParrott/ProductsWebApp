@@ -1,0 +1,28 @@
+﻿@model ProductsWebApp.Models.ProductModel
+    
+    @{
+        var nameStr = Model.Name;
+        var firstWord = nameStr.IndexOf(" ") > -1 ? nameStr.Substring(0, nameStr.IndexOf(" ")) : nameStr;
+
+    } 
+    <div class="card" style="width: 18rem;">
+        <img src="https://loremflickr.com/150/150/@firstWord?lock=@Model.Id" class="card-img-top" alt="Image for @Model.Name">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Name</h5>
+            <p class="card-text">@Html.DisplayFor(m => Model.Price)</p>
+            <p class="card-text">@Model.Description</p>
+
+            <!--
+    <a href="/product/ShowDetails/@Model.Id" class="btn btn-primary">Details</a>
+    <a href="/product/Edit/@Model.Id" class="btn btn-secondary">Edit</a>
+     -->
+
+            <a href="/product/Delete/@Model.Id" class="btn btn-danger">Delete</a>
+            <button value="@Model.Id" type="button" class="btn btn-primary detail-product-button" data-toggle="modal" data-target="#detailModal">
+                Details
+            </button>
+            <button value="@Model.Id" type="button" class="btn btn-secondary edit-product-button" data-toggle="modal" data-target="#editModal">
+                Edit
+            </button>
+        </div>
+    </div>
